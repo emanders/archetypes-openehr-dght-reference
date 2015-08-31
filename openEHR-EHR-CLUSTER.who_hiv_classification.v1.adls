@@ -1,0 +1,104 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated; uid=69453c5f-b816-40d9-98a4-a2a1a1164877)
+	openEHR-EHR-CLUSTER.who_hiv_classification.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Eric-Jan Manders">
+		["organisation"] = <"CDC">
+		["email"] = <"ejmanders@cdc.gov">
+		["date"] = <"2015-08-31">
+	>
+	copyright = <"© CDC">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a functional classification of HIV disease as defined by the World Health Organization">
+			use = <"Use to record HIV disease finding using the WHO four stage scale for adults. 
+
+Method note: This archetype has been specifically designed to be used in the 'Specific details' SLOT within the  EVALUATION.problem_diagnosis archetype, in SLOTs within other clinically appropriate ENTRY or CLUSTER archetypes, or alternatively as a standalone assessment of heart failure in the 'Detail' SLOT within the generic EVALUATION.container archetype.">
+			keywords = <"HIV", "AIDS", "WHO">
+			misuse = <"Should not be used to record a classification  outside the context of HIV infection.">
+		>
+	>
+	other_details = <
+		["references"] = <"
+1. WHO HIV guidelines.
+http://www.aidsetc.org/guide/hiv-classification-cdc-and-who-staging-systems
+
+2. Modeled after the archetype: OpenEHR-EHR-CLUSTER.nyha-heart-failure  from the  EU-SHN Heart failure project, available on openehr.org/ckm
+">
+		["current_contact"] = <"Eric-Jan Manders, CDC, ejmanders@cdc.gov">
+		["MD5-CAM-1.0.1"] = <"924252C6D31EEF7BA456B2CDDAAFB0D9">
+	>
+
+definition
+	CLUSTER[id1] matches {	-- WHO HIV disease classification
+		items matches {
+			ELEMENT[id2] occurrences matches {0..1} matches {	-- WHO HIV disease classification
+				value matches {
+					DV_ORDINAL[id3] matches {
+						[value, symbol] matches {
+							[{1}, {[at3]}],
+							[{2}, {[at4]}],
+							[{3}, {[at5]}],
+							[{4}, {[at6]}]
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"WHO HIV disease classification">
+				description = <"HIV disease classification using WHO four stage criteria">
+			>
+			["id2"] = <
+				text = <"WHO HIV disease classification">
+				description = <"The functional classification of HIV disease stage for adults.">
+			>
+			["at3"] = <
+				text = <"Stage I">
+				description = <"Asymptomatic HIV infection">
+			>
+			["at4"] = <
+				text = <"Stage II">
+				description = <"Symptomatic">
+			>
+			["at5"] = <
+				text = <"Stage III">
+				description = <"AIDS">
+			>
+			["at6"] = <
+				text = <"Stage IV">
+				description = <"Advanced AIDS">
+			>
+			["ac1"] = <
+				text = <"WHO HIV disease classification (synthesised)">
+				description = <"The functional classification of HIV disease stage for adults. (synthesised)">
+			>
+		>
+	>
+	term_bindings = <
+		["Snomed"] = <
+			["id1"] = <http://snomed.info/id/400000000>
+			["id2"] = <http://snomed.info/id/420816009>
+			["at3"] = <http://snomed.info/id/103415007>
+			["at4"] = <http://snomed.info/id/103416008>
+			["at5"] = <http://snomed.info/id/103417004>
+			["at6"] = <http://snomed.info/id/103417004>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at3", "at4", "at5", "at6">
+		>
+	>

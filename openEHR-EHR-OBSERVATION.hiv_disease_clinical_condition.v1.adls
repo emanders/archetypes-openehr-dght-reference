@@ -1,0 +1,159 @@
+archetype (adl_version=2.0.5; rm_release=1.0.2; generated)
+	openEHR-EHR-OBSERVATION.hiv_disease_clinical_condition.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["es-cl"] = <
+			language = <[ISO_639-1::es-cl]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["name"] = <"Eric-Jan Mandxers">
+		["organisation"] = <"CDC">
+		["email"] = <"ejmanders@cdc.gov">
+		["date"] = <"2015-08-31">
+	>
+	copyright = <"© CDC">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the presence of an HIV disease clinical condition (AIDS defining illness) as observed during physical exam, and documented as PRESENT or NOT-PRESENT(default)">
+			use = <"Use to record HIV disease clinical condition as the presence of a single opportunistic infection
+">
+			keywords = <"HIV", "WHO HIV classification">
+			misuse = <"Not to be used to record these as diagnostics/problems independent of a WHO staging.">
+		>
+		["es-cl"] = <
+			language = <[ISO_639-1::es-cl]>
+			purpose = <"Registrar la presencia y la intensidad de movimientos fetales como un gráfico del movimiento fetal para la madre o para el uso del clínico.
+
+
+
+
+
+
+">
+			use = <"Use to record evidence of fetal activity as an indirect indicator of fetal well-being.
+
+Use to record the presence of fetal movements and pattern as part of routine antenatal visits from second trimester of pregnancy onwards.
+
+Use to record details of the number of fetal movements felt over a specified time interval, and represented in a 'Kick Chart', most often in the third trimester.">
+			keywords = <"Fetal (es)", "Movimientos (es)", "Patadas (es)">
+			misuse = <"Not to be used to record the response of a fetus to deliberate stimulation eg vibroacoustic stimulation.
+
+Not to be used to represent formal fetal heart rate monitoring eg using cardiotocographs.">
+		>
+	>
+	other_details = <
+		["references"] = <"[1] WHO HIV classifiction
+">
+		["current_contact"] = <"Eric-Jan Manders, CDC, ejmanders@cdc.gov">
+		["MD5-CAM-1.0.1"] = <"289FC9EA88B5A18558D50EE737C953A9">
+	>
+
+definition
+	OBSERVATION[id1] matches {	-- HIV disease clinical condition
+		data matches {
+			HISTORY[id2] matches {
+				events cardinality matches {1; unordered} matches {
+					EVENT[id28] occurrences matches {0..1} matches {	-- Any Event
+						data matches {
+							ITEM_TREE[id4] matches {
+								items matches {
+									ELEMENT[id5] occurrences matches {0..1} matches {	-- Presence
+										value matches {
+											DV_CODED_TEXT[id30] matches {
+												defining_code matches {[ac1]}		-- Presence (synthesised)
+											}
+										}
+									}
+									ELEMENT[id29] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT[id31] 
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"HIV disease clinical condition">
+				description = <"HIV disease clinical condition (also AIDS defining illness). represented as an observed finding">
+			>
+			["id5"] = <
+				text = <"Presence">
+				description = <"Presence of HIV disease clinical condition">
+			>
+			["at8"] = <
+				text = <"Present">
+				description = <"condition is present as observed by clicician">
+			>
+			["at12"] = <
+				text = <"Absent">
+				description = <"condition is not present">
+			>
+			["id28"] = <
+				text = <"Any Event">
+				description = <"">
+			>
+			["id29"] = <
+				text = <"Description">
+				description = <"Narrative description of HIV clinical condition as observed by the clinician">
+			>
+			["ac1"] = <
+				text = <"Presence (synthesised)">
+				description = <"Presence of HIV disease clinical condition (synthesised)">
+			>
+		>
+		["es-cl"] = <
+			["id1"] = <
+				text = <"*HIV disease clinical condition(en)">
+				description = <"*HIV disease clinical condition (also AIDS defining illness). represented as an observed finding(en)">
+			>
+			["id5"] = <
+				text = <"*Presence(en)">
+				description = <"*Presence of HIV disease clinical condition(en)">
+			>
+			["at8"] = <
+				text = <"*Present(en)">
+				description = <"*condition is present as observed by clicician(en)">
+			>
+			["at12"] = <
+				text = <"*Absent(en)">
+				description = <"*condition is not present(en)">
+			>
+			["id28"] = <
+				text = <"*Any Event(en)">
+				description = <"*(en)">
+			>
+			["id29"] = <
+				text = <"*Description(en)">
+				description = <"*Narrative description of HIV clinical condition as observed by the clinician(en)">
+			>
+			["ac1"] = <
+				text = <"*Presence(en) (synthesised)">
+				description = <"*Presence of HIV disease clinical condition(en) (synthesised)">
+			>
+		>
+	>
+	value_sets = <
+		["ac1"] = <
+			id = <"ac1">
+			members = <"at8", "at12">
+		>
+	>

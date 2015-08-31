@@ -1,0 +1,190 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.hiv_disease_clinical_condition-S1_oral_candidiasis.v1
+specialize
+	openEHR-EHR-OBSERVATION.hiv_disease_clinical_condition.v1
+
+concept
+	[at0000.1]	-- HIV disease clinical condition - oral candidiasis
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["es-cl"] = <
+			language = <[ISO_639-1::es-cl]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Eric-Jan Mandxers">
+		["organisation"] = <"CDC">
+		["email"] = <"ejmanders@cdc.gov">
+		["date"] = <"2015-08-31">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the presence of an HIV disease clinical condition (AIDS defining illness) as observed during physical exam, and documented as PRESENT or NOT-PRESENT(default)">
+			use = <"Use to record HIV disease clinical condition as the presence of a single opportunistic infection
+">
+			keywords = <"HIV", "WHO HIV classification">
+			misuse = <"Not to be used to record these as diagnostics/problems independent of a WHO staging.">
+			copyright = <"© CDC">
+		>
+		["es-cl"] = <
+			language = <[ISO_639-1::es-cl]>
+			purpose = <"Registrar la presencia y la intensidad de movimientos fetales como un gráfico del movimiento fetal para la madre o para el uso del clínico.
+
+
+
+
+
+
+">
+			use = <"Use to record evidence of fetal activity as an indirect indicator of fetal well-being.
+
+Use to record the presence of fetal movements and pattern as part of routine antenatal visits from second trimester of pregnancy onwards.
+
+Use to record details of the number of fetal movements felt over a specified time interval, and represented in a 'Kick Chart', most often in the third trimester.">
+			keywords = <"Fetal (es)", "Movimientos (es)", "Patadas (es)">
+			misuse = <"Not to be used to record the response of a fetus to deliberate stimulation eg vibroacoustic stimulation.
+
+Not to be used to represent formal fetal heart rate monitoring eg using cardiotocographs.">
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"[1] WHO HIV classifiction
+">
+		["current_contact"] = <"Eric-Jan Manders, CDC, ejmanders@cdc.gov">
+		["MD5-CAM-1.0.1"] = <"6A21B46D9D1BFE891C91A8272CA205A0">
+	>
+
+definition
+	OBSERVATION[at0000.1] matches {	-- HIV disease clinical condition - oral candidiasis
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1; unordered} matches {
+					EVENT[at0027] occurrences matches {0..1} matches {	-- Any Event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Presence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007, 	-- Present
+													at0011]	-- Absent
+												}
+											}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					comment = <"base archetype, to be refined for specific conditions. This archetype only allows present/not-present assessment finding
+">
+					text = <"HIV disease clinical condition">
+					description = <"HIV disease clinical condition (also AIDS defining illness). represented as an observed finding">
+				>
+				["at0000.1"] = <
+					comment = <"base archetype, to be refined for specific conditions. This archetype only allows present/not-present assessment finding
+!">
+					text = <"HIV disease clinical condition - oral candidiasis">
+					description = <"HIV disease clinical condition oral candidiasis (as indicated by WHO HIV stage I)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Presence">
+					description = <"Presence of HIV disease clinical condition">
+				>
+				["at0007"] = <
+					text = <"Present">
+					description = <"condition is present as observed by clicician">
+				>
+				["at0011"] = <
+					text = <"Absent">
+					description = <"condition is not present">
+				>
+				["at0027"] = <
+					text = <"Any Event">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Description">
+					description = <"Narrative description of HIV clinical condition as observed by the clinician">
+				>
+			>
+		>
+		["es-cl"] = <
+			items = <
+				["at0000"] = <
+					description = <"*HIV disease clinical condition (also AIDS defining illness). represented as an observed finding(en)">
+					text = <"*HIV disease clinical condition(en)">
+					comment = <"*base archetype, to be refined for specific conditions. This archetype only allows present/not-present assessment finding
+(en)">
+				>
+				["at0000.1"] = <
+					description = <"*HIV disease clinical condition oral candidiasis (as indicated by WHO HIV stage I)(en)">
+					text = <"*HIV disease clinical condition - oral candidiasis(en)">
+					comment = <"*base archetype, to be refined for specific conditions. This archetype only allows present/not-present assessment finding
+!(en)">
+				>
+				["at0001"] = <
+					text = <"*Serie de eventos (es)">
+					description = <"*@ interno @(es)">
+				>
+				["at0003"] = <
+					text = <"*Lista (es)">
+					description = <"*@ interno @(en)">
+				>
+				["at0004"] = <
+					text = <"*Presence(en)">
+					description = <"*Presence of HIV disease clinical condition(en)">
+				>
+				["at0007"] = <
+					text = <"*Present(en)">
+					description = <"*condition is present as observed by clicician(en)">
+				>
+				["at0011"] = <
+					text = <"*Absent(en)">
+					description = <"*condition is not present(en)">
+				>
+				["at0027"] = <
+					text = <"*Any Event(en)">
+					description = <"*(en)">
+				>
+				["at0028"] = <
+					text = <"*Description(en)">
+					description = <"*Narrative description of HIV clinical condition as observed by the clinician(en)">
+				>
+			>
+		>
+	>
